@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #0F172A;
+    color: #F8FAFC;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0F172A;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(59, 130, 246, 0.3);
+    color: #F8FAFC;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-xl border border-border/50 rounded-2xl;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-accent/30 hover:shadow-card-hover;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-purple-400;
+  }
+
+  /* Input Styles */
+  .input-field {
+    @apply w-full px-4 py-3 bg-background/50 border border-border rounded-xl 
+           text-text-primary placeholder:text-text-muted 
+           focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent
+           transition-all duration-200;
+  }
+
+  /* Button Base */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 
+           rounded-xl font-medium text-body-sm
+           transition-all duration-200 
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-white hover:bg-accent-hover focus:ring-accent shadow-lg shadow-accent/20;
+  }
+
+  .btn-secondary {
+    @apply btn bg-card border border-border text-text-primary hover:bg-card-hover focus:ring-border;
+  }
+
+  .btn-danger {
+    @apply btn bg-error/10 text-error border border-error/20 hover:bg-error/20 focus:ring-error;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-text-secondary hover:text-text-primary hover:bg-card focus:ring-border;
+  }
+
+  /* Skeleton Loading */
+  .skeleton {
+    @apply bg-border/50 rounded-lg animate-pulse;
+  }
+
+  /* Page Container */
+  .page-container {
+    @apply p-4 md:p-6 lg:p-8 max-w-[1600px] mx-auto;
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-heading-3 text-text-primary font-semibold;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-caption font-medium;
+  }
+
+  .badge-income {
+    @apply badge bg-success/10 text-success border border-success/20;
+  }
+
+  .badge-expense {
+    @apply badge bg-error/10 text-error border border-error/20;
+  }
+
+  /* Table */
+  .table-header {
+    @apply text-caption text-text-muted uppercase tracking-wider font-semibold;
+  }
+
+  .table-row {
+    @apply border-b border-border/30 hover:bg-card-hover/50 transition-colors duration-150;
+  }
+
+  .table-cell {
+    @apply px-4 py-4 text-body-sm;
+  }
+}
+
+@layer utilities {
+  /* Noise texture overlay */
+  .noise-bg {
+    position: relative;
+  }
+
+  .noise-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Dot pattern */
+  .dot-pattern {
+    background-image: radial-gradient(circle, #1E293B 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
